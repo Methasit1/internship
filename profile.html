@@ -22,42 +22,41 @@
     </style>
 </head>
 <body class="bg-[#F3F5F7] min-h-screen">
-    <nav class="flex items-center justify-between px-4 md:px-8 py-4 bg-white border-b border-gray-100 sticky top-0 z-50">
-        <!-- โลโก้ -->
-        <a href="./index.html">
-            <img src="./img/logo.png" alt="Logo" class="w-28 md:w-32 h-auto">
-        </a>
+    <!-- Navbar -->
+    <nav class="flex items-center justify-between px-8 py-4 bg-white border-b border-gray-100 sticky top-0 z-50">
+        <!-- โลโก้ (กดกลับหน้าหลัก) -->
+        <a href="./index.html"><img src="./img/logo.png" alt="Logo" class="w-32"></a>
         
-        <!-- เมนูตรงกลาง (แสดงบนจอ md ขึ้นไป) -->
-        <div class="relative md:flex items-center gap-8 text-gray-600 font-medium" id="nav-menu">
-            <a href="./index.html" class="nav-item hover:text-emerald-600 pb-1 transition-colors">Feed</a>
-            <a href="./profile.html" class="nav-item text-emerald-600 pb-1 transition-colors">Profile</a>
+        <!-- เมนูตรงกลาง พร้อมเส้นใต้สไลด์ -->
+        <div class="relative hidden md:flex items-center gap-8 text-gray-600 font-medium" id="nav-menu">
+            <!-- ใส่ href ให้ถูกต้อง -->
+            <a href="./index.html" class="nav-item text-emerald-600 pb-1 transition-colors">Feed</a>
+            <a href="./profile.html" class="nav-item hover:text-emerald-600 pb-1 transition-colors">Profile</a>
+            
             <div id="nav-indicator" class="absolute bottom-0 left-0 h-[2px] bg-emerald-600 transition-all duration-300 ease-out"></div>
         </div>
         
-        <!-- ฝั่งขวา: Auth & ปุ่มเปิดเมนูกรอบมือถือ -->
-        <div class="flex items-center gap-3 md:gap-4">
+        <!-- Auth Container (สลับปุ่มตามสถานะล็อกอิน) -->
+        <div class="flex items-center gap-4">
             <!-- ปุ่มเข้าสู่ระบบ -->
-            <a href="./login.html" id="btn-login" class="hidden bg-[#10B981] hover:bg-emerald-600 text-white px-5 py-2 rounded-full font-bold text-sm transition">
+            <a href="./login.html" id="btn-login" class="hidden bg-[#10B981] hover:bg-emerald-600 text-white px-6 py-2 rounded-full font-bold text-sm transition block">
                 เข้าสู่ระบบ
             </a>
             
-            <!-- ไอคอนโปรไฟล์ -->
-            <a href="./profile.html" id="btn-profile" class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gray-200 flex items-center justify-center text-gray-700 shrink-0 hover:bg-gray-300 transition">
+            <!-- ไอคอนโปรไฟล์ (ซ่อนไว้ก่อน จะแสดงเมื่อล็อกอินแล้วผ่าน TypeScript) -->
+            <a href="./profile.html" id="btn-profile" class="w-10 h-10 md:w-12 md:h-12 rounded-full ml-10 bg-gray-200 flex items-center justify-center text-gray-700 shrink-0 hover:bg-gray-300 transition">
                 <i class="fa-regular fa-user text-base md:text-lg"></i>
             </a>
             
-            <!-- ปุ่มออกจากระบบ -->
-            <button id="btn-logout" class="hidden text-sm text-red-500 hover:text-red-700 font-medium cursor-pointer">
-                ออกจากระบบ
-            </button>
+            <!-- ปุ่มออกจากระบบ (ซ่อนไว้ก่อนเช่นกัน) -->
+            <button id="btn-logout" class="hidden text-sm text-red-500 hover:text-red-700 font-medium cursor-pointer">ออกจากระบบ</button>
         </div>
     </nav>
 
     <main class="w-full h-full p-10 px-40 pb-48 z-0">
         <!-- ปุ่มย้อนกลับ (บริษัททั้งหมด) -->
         <a title="toallcompanybtn" href="./allCompany.html" class="font-thai inline-flex items-center gap-3 text-black/50 hover:text-gray-700 font-normal text-2xl transition-colors">
-            <i class="fa-solid fa-chevron-left text-4xl font-extrabold"></i>
+            <i class="fa-solid fa-chevron-left text-[16px] font-extrabold"></i>
             บริษัททั้งหมด
         </a>
 
@@ -67,7 +66,7 @@
                 <!--profile image-->
                 <aside class="flex flex-col items-center bg-white w-full h-[525px] rounded-4xl p-12 gap-5 shadow-sm">
                     <img src="./img/profile.jpg" alt="profileimage" class="rounded-full size-[300px] object-cover"/>
-                    <p class="text-2xl font-semibold font-thai mt-8">นายแฮมมี่ มหัศจรรย์</p>
+                    <p class="text-xl font-semibold font-thai mt-8">นายแฮมมี่ มหัศจรรย์</p>
                     <span class="bg-[#10B981] text-white font-thai rounded-4xl px-10 py-3 font-semibold text-[14px] tracking-widest">ฝึกงาน</span>
                 </aside>
 
@@ -114,7 +113,7 @@
 
             <!--ฝั่งขวา-->
             <div class="flex-1 lg:w-[850px]">
-                <div class="text-[40px] font-eng font-semibold z-10 mb-3">My Reviews</div>
+                <div class="text-3xl font-eng font-semibold z-10 mb-3">My Reviews</div>
                 <!-- Container สำหรับรวมการ์ดทั้งหมด -->
                 <aside class="space-y-4">
                     <!-- Card 1 -->
@@ -125,7 +124,7 @@
                                     <div class="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center text-gray-700 shrink-0">
                                         <i class="fa-regular fa-user text-lg"></i>
                                     </div>
-                                    <h4 class="font-medium tracking-wider text-2xl text-gray-900 font-thai">นายแฮมมี่ มหัศจรรย์</h4>
+                                    <h4 class="font-medium tracking-wider text-xl text-gray-900 font-thai">นายแฮมมี่ มหัศจรรย์</h4>
                                 </div>
                                 <span class="text-sm font-semibold text-gray-400">31 / 08 /2026</span>
                             </div>
@@ -158,7 +157,7 @@
                                     <div class="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center text-gray-700 shrink-0">
                                         <i class="fa-regular fa-user text-lg"></i>
                                     </div>
-                                    <h4 class="font-medium tracking-wider text-2xl text-gray-900 font-thai">นายแฮมมี่ มหัศจรรย์</h4>
+                                    <h4 class="font-medium tracking-wider text-xl text-gray-900 font-thai">นายแฮมมี่ มหัศจรรย์</h4>
                                 </div>
                                 <span class="text-sm font-semibold text-gray-400">31 / 08 /2026</span>
                             </div>
@@ -191,7 +190,7 @@
                                     <div class="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center text-gray-700 shrink-0">
                                         <i class="fa-regular fa-user text-lg"></i>
                                     </div>
-                                    <h4 class="font-medium tracking-wider text-2xl text-gray-900 font-thai">นายแฮมมี่ มหัศจรรย์</h4>
+                                    <h4 class="font-medium tracking-wider text-xl text-gray-900 font-thai">นายแฮมมี่ มหัศจรรย์</h4>
                                 </div>
                                 <span class="text-sm font-semibold text-gray-400">31 / 08 /2026</span>
                             </div>
