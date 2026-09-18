@@ -58,4 +58,15 @@ export interface Review {
     content: string;
     date: string;
 }
+export interface Review {
+    id: string;
+    companyName: string;
+    position: string;
+    rating: number;
+    detail: string;
+    date: string;
+    authorName: string;
+    isNew?: boolean;
+    author?: string;
+}
 //# sourceMappingURL=models.d.ts.map

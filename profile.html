@@ -12,214 +12,130 @@
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <style>
-        .font-eng {
-            font-family: 'Sarabun', 'Inter', sans-serif;
+        .font-eng { font-family: 'Sarabun', 'Inter', sans-serif; }
+        .font-thai { font-family: 'Sarabun', 'Kanit', sans-serif; }
+
+            /* อนิเมชันการ์ด */
+        .review-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
         }
 
-        .font-thai {
-            font-family: 'Sarabun', 'Kanit', sans-serif;
+        /* สถานะเมื่อกดลบ */
+        .review-card.deleting {
+            opacity: 0;
+            transform: scale(0.95);
+            max-height: 0 !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            margin-bottom: -1rem !important; /* หักล้างระยะ gap-4 (16px) ให้สมูท */
+            border-width: 0 !important;
         }
     </style>
 </head>
-<body class="bg-[#F3F5F7] min-h-screen">
-    <nav class="flex items-center justify-between px-4 md:px-8 py-4 bg-white border-b border-gray-100 sticky top-0 z-50">
-        <!-- โลโก้ -->
+<body class="bg-[#F3F5F7] h-screen overflow-hidden flex flex-col">
+
+    <!-- Navigation -->
+    <nav class="flex items-center justify-between px-6 py-3 bg-white border-b border-gray-100 shrink-0">
         <a href="./index.html">
-            <img src="./img/logo.png" alt="Logo" class="w-28 md:w-32 h-auto">
+            <img src="./img/logo.png" alt="Logo" class="w-28 h-auto">
         </a>
         
-        <!-- เมนูตรงกลาง (แสดงบนจอ md ขึ้นไป) -->
-        <div class="relative md:flex items-center gap-8 text-gray-600 font-medium" id="nav-menu">
+        <div class="relative hidden md:flex items-center gap-8 text-gray-600 font-medium" id="nav-menu">
             <a href="./index.html" class="nav-item hover:text-emerald-600 pb-1 transition-colors">Feed</a>
             <a href="./profile.html" class="nav-item text-emerald-600 pb-1 transition-colors">Profile</a>
             <div id="nav-indicator" class="absolute bottom-0 left-0 h-[2px] bg-emerald-600 transition-all duration-300 ease-out"></div>
         </div>
         
-        <!-- ฝั่งขวา: Auth & ปุ่มเปิดเมนูกรอบมือถือ -->
-        <div class="flex items-center gap-3 md:gap-4">
-            <!-- ปุ่มเข้าสู่ระบบ -->
+        <div class="flex items-center gap-3 ml-10">
             <a href="./login.html" id="btn-login" class="hidden bg-[#10B981] hover:bg-emerald-600 text-white px-5 py-2 rounded-full font-bold text-sm transition">
                 เข้าสู่ระบบ
             </a>
-            
-            <!-- ไอคอนโปรไฟล์ -->
-            <a href="./profile.html" id="btn-profile" class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-gray-200 flex items-center justify-center text-gray-700 shrink-0 hover:bg-gray-300 transition">
-                <i class="fa-regular fa-user text-base md:text-lg"></i>
+            <a href="./profile.html" id="btn-profile" class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-700 shrink-0 hover:bg-gray-300 transition">
+                <i class="fa-regular fa-user text-base"></i>
             </a>
-            
-            <!-- ปุ่มออกจากระบบ -->
             <button id="btn-logout" class="hidden text-sm text-red-500 hover:text-red-700 font-medium cursor-pointer">
                 ออกจากระบบ
             </button>
         </div>
     </nav>
 
-    <main class="w-full h-full p-10 px-40 pb-48 z-0">
-        <!-- ปุ่มย้อนกลับ (บริษัททั้งหมด) -->
-        <a title="toallcompanybtn" href="./allCompany.html" class="font-thai inline-flex items-center gap-3 text-black/50 hover:text-gray-700 font-normal text-2xl transition-colors">
-            <i class="fa-solid fa-chevron-left text-4xl font-extrabold"></i>
+    <!-- Main Content -->
+    <main class="flex-1 w-full max-w-7xl mx-auto px-6 py-6 flex flex-col min-h-0">
+        
+        <!-- ปุ่มย้อนกลับ -->
+        <a title="toallcompanybtn" href="./allCompany.html" class="font-thai inline-flex items-center gap-2 text-black/50 hover:text-gray-700 font-normal text-lg transition-colors mb-3 shrink-0">
+            <i class="fa-solid fa-chevron-left text-lg font-extrabold"></i>
             บริษัททั้งหมด
         </a>
 
-        <section class="flex flex-col lg:flex-row w-full mt-10 gap-6 items-start">
-            <!--ฝั่งซ้าย-->
-            <div class="w-full lg:w-[600px] shrink-0">
-                <!--profile image-->
-                <aside class="flex flex-col items-center bg-white w-full h-[525px] rounded-4xl p-12 gap-5 shadow-sm">
-                    <img src="./img/profile.jpg" alt="profileimage" class="rounded-full size-[300px] object-cover"/>
-                    <p class="text-2xl font-semibold font-thai mt-8">นายแฮมมี่ มหัศจรรย์</p>
-                    <span class="bg-[#10B981] text-white font-thai rounded-4xl px-10 py-3 font-semibold text-[14px] tracking-widest">ฝึกงาน</span>
+        <section class="flex flex-col lg:flex-row w-full gap-6 items-start flex-1 min-h-0">
+            
+            <!-- ฝั่งซ้าย: Profile & Contact -->
+            <div class="w-full lg:w-80 shrink-0 flex flex-col gap-4">
+                
+                <!-- Profile Card -->
+                <aside class="flex flex-col items-center bg-white w-full rounded-3xl p-5 shadow-sm border border-gray-100">
+                    <img src="./img/profile.jpg" alt="profileimage" class="rounded-full w-32 h-32 object-cover shadow-sm"/>
+                    <p class="text-lg font-medium font-thai mt-3 text-center">นายแฮมมี่ มหัศจรรย์</p>
+                    <span class="bg-[#10B981] text-white font-thai rounded-full px-6 py-1 font-semibold text-xs tracking-wider mt-2">ฝึกงาน</span>
                 </aside>
 
-                <aside class="flex flex-col bg-white w-full h-[373px] mt-5 rounded-4xl p-10 gap-5 shadow-sm">
-                    <h1 class="text-2xl font-semibold font-eng">CONTACT INFORMATION</h1>
-                    <!-- Email -->
-                    <div class="flex items-center gap-4 mb-5">
-                        <div class="size-14 rounded-full bg-[#A3F3D1] text-[#0B5C43] flex items-center justify-center shrink-0">
-                            <i class="fa-regular fa-envelope text-lg"></i>
+                <!-- Contact Information Card -->
+                <aside class="flex flex-col bg-white w-full rounded-3xl p-5 shadow-sm border border-gray-100 gap-3">
+                    <h1 class="text-base font-semibold font-eng border-b border-gray-100 pb-2">CONTACT INFORMATION</h1>
+                    
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-[#A3F3D1] text-[#0B5C43] flex items-center justify-center shrink-0">
+                            <i class="fa-regular fa-envelope text-sm"></i>
                         </div>
-                        <div>
-                            <p class="text-[18px] font-semibold text-gray-800">Email Address</p>
-                            <p class="text-[18px] text-gray-500">a.mercer@up.ac.th</p>
+                        <div class="min-w-0">
+                            <p class="text-xs font-semibold text-gray-800">Email Address</p>
+                            <p class="text-xs text-gray-500 truncate">a.mercer@up.ac.th</p>
                         </div>
                     </div>
-                    <!-- LinkedIn -->
-                    <div class="flex items-center justify-between mb-5">
-                        <div class="flex items-center gap-4">
-                            <div class="size-14 rounded-full bg-[#A3F3D1] text-[#0B5C43] flex items-center justify-center shrink-0">
-                                <i class="fa-solid fa-link text-lg"></i>
+
+                    <div class="flex items-center justify-between gap-2">
+                        <div class="flex items-center gap-3 min-w-0">
+                            <div class="w-10 h-10 rounded-full bg-[#A3F3D1] text-[#0B5C43] flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-link text-sm"></i>
                             </div>
-                            <div>
-                                <p class="text-[18px] font-semibold text-gray-800">LinkedIn Profile</p>
-                                <a href="#" class="text-[18px] text-gray-500 hover:text-[#00B98B]">linkedin.com/in/alexmercer</a>
+                            <div class="min-w-0">
+                                <p class="text-xs font-semibold text-gray-800">LinkedIn Profile</p>
+                                <a href="#" class="text-xs text-gray-500 hover:text-[#00B98B] truncate block">linkedin.com/in/alexmercer</a>
                             </div>
                         </div>
-                        <i class="fa-solid fa-arrow-up-right-from-square text-gray-400 text-2xl"></i>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-gray-400 text-sm shrink-0"></i>
                     </div>
-                    <!-- Facebook -->
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-4">
-                            <div class="size-14 rounded-full bg-[#A3F3D1] text-[#0B5C43] flex items-center justify-center shrink-0">
-                                <i class="fa-solid fa-globe text-lg"></i>
+
+                    <div class="flex items-center justify-between gap-2">
+                        <div class="flex items-center gap-3 min-w-0">
+                            <div class="w-10 h-10 rounded-full bg-[#A3F3D1] text-[#0B5C43] flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-globe text-sm"></i>
                             </div>
-                            <div>
-                                <p class="text-[18px] font-semibold text-gray-800">Facebook</p>
-                                <a href="#" class="text-[18px] text-gray-500 hover:text-[#00B98B]">facebook.com/alex.m</a>
+                            <div class="min-w-0">
+                                <p class="text-xs font-semibold text-gray-800">Facebook</p>
+                                <a href="#" class="text-xs text-gray-500 hover:text-[#00B98B] truncate block">facebook.com/alex.m</a>
                             </div>
                         </div>
-                        <i class="fa-solid fa-arrow-up-right-from-square text-gray-400 text-2xl"></i>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-gray-400 text-sm shrink-0"></i>
                     </div>    
                 </aside>
             </div>
 
-            <!--ฝั่งขวา-->
-            <div class="flex-1 lg:w-[850px]">
-                <div class="text-[40px] font-eng font-semibold z-10 mb-3">My Reviews</div>
-                <!-- Container สำหรับรวมการ์ดทั้งหมด -->
-                <aside class="space-y-4">
-                    <!-- Card 1 -->
-                    <a title="myreview" href="./myreview.html" class="block">
-                        <div class="bg-white rounded-4xl w-full min-h-[259px] sm:p-8 border border-gray-100 shadow-sm hover:cursor-pointer">
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center text-gray-700 shrink-0">
-                                        <i class="fa-regular fa-user text-lg"></i>
-                                    </div>
-                                    <h4 class="font-medium tracking-wider text-2xl text-gray-900 font-thai">นายแฮมมี่ มหัศจรรย์</h4>
-                                </div>
-                                <span class="text-sm font-semibold text-gray-400">31 / 08 /2026</span>
-                            </div>
-                            <div class="flex items-center gap-3 mb-4">
-                                <span class="border border-[#10B981] text-[#10B981] text-xs font-semibold px-4 py-1.5 rounded-full">
-                                    Frontend Developer
-                                </span>
-                                <div class="bg-[#EEF2FF] px-3.5 py-1.5 rounded-full flex items-center gap-2">
-                                    <div class="flex gap-1 text-[#10B981]">
-                                        <i class="fa-solid fa-star text-xs"></i>
-                                        <i class="fa-solid fa-star text-xs"></i>
-                                        <i class="fa-solid fa-star text-xs"></i>
-                                        <i class="fa-solid fa-star text-xs"></i>
-                                        <i class="fa-solid fa-star text-xs"></i>
-                                    </div>
-                                    <span class="text-xs font-bold text-gray-900">5.0</span>
-                                </div>
-                            </div>
-                            <p class="text-sm text-gray-900 font-eng font-semibold text-sm">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nec est urna. Nunc vehicula elit vel est vehicula scelerisque. Suspendisse non elementum ante. Sed libero leo, blandit at diam a, gravida aliquam tellus. Cras quis ornare odio, eget consectetur quam. Aenean tristique sed ex non porta. Nam molestie at quam non luctus. Etiam laoreet, turpis at semper finibus, enim erat semper nisl, sed efficitur diam nisl ut ligula. Proin tincidunt fermentum mauris, non cursus odio convallis ut. Nulla sodales ante eu suscipit mattis. Sed euismod tristique neque vel ornare.
-                            </p>
-                        </div>
-                    </a>
-
-                    <!-- Card 2 -->
-                    <a title="myreview" href="./myreview.html" class="block">
-                        <div class="bg-white rounded-4xl w-full min-h-[259px] sm:p-8 border border-gray-100 shadow-sm hover:cursor-pointer">
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center text-gray-700 shrink-0">
-                                        <i class="fa-regular fa-user text-lg"></i>
-                                    </div>
-                                    <h4 class="font-medium tracking-wider text-2xl text-gray-900 font-thai">นายแฮมมี่ มหัศจรรย์</h4>
-                                </div>
-                                <span class="text-sm font-semibold text-gray-400">31 / 08 /2026</span>
-                            </div>
-                            <div class="flex items-center gap-3 mb-4">
-                                <span class="border border-[#10B981] text-[#10B981] text-xs font-semibold px-4 py-1.5 rounded-full">
-                                    Frontend Developer
-                                </span>
-                                <div class="bg-[#EEF2FF] px-3.5 py-1.5 rounded-full flex items-center gap-2">
-                                    <div class="flex gap-1 text-[#10B981]">
-                                        <i class="fa-solid fa-star text-xs"></i>
-                                        <i class="fa-solid fa-star text-xs"></i>
-                                        <i class="fa-solid fa-star text-xs"></i>
-                                        <i class="fa-solid fa-star text-xs"></i>
-                                        <i class="fa-solid fa-star text-xs"></i>
-                                    </div>
-                                    <span class="text-xs font-bold text-gray-900">5.0</span>
-                                </div>
-                            </div>
-                            <p class="text-sm text-gray-900 font-eng font-semibold text-sm">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nec est urna. Nunc vehicula elit vel est vehicula scelerisque. Suspendisse non elementum ante. Sed libero leo, blandit at diam a, gravida aliquam tellus. Cras quis ornare odio, eget consectetur quam. Aenean tristique sed ex non porta. Nam molestie at quam non luctus. Etiam laoreet, turpis at semper finibus, enim erat semper nisl, sed efficitur diam nisl ut ligula. Proin tincidunt fermentum mauris, non cursus odio convallis ut. Nulla sodales ante eu suscipit mattis. Sed euismod tristique neque vel ornare.
-                            </p>
-                        </div>
-                    </a>
-
-                    <!-- Card 3 -->
-                    <a title="myreview" href="./myreview.html" class="block">
-                        <div class="bg-white rounded-4xl w-full min-h-[259px] sm:p-8 border border-gray-100 shadow-sm hover:cursor-pointer">
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center text-gray-700 shrink-0">
-                                        <i class="fa-regular fa-user text-lg"></i>
-                                    </div>
-                                    <h4 class="font-medium tracking-wider text-2xl text-gray-900 font-thai">นายแฮมมี่ มหัศจรรย์</h4>
-                                </div>
-                                <span class="text-sm font-semibold text-gray-400">31 / 08 /2026</span>
-                            </div>
-                            <div class="flex items-center gap-3 mb-4">
-                                <span class="border border-[#10B981] text-[#10B981] text-xs font-semibold px-4 py-1.5 rounded-full">
-                                    Frontend Developer
-                                </span>
-                                <div class="bg-[#EEF2FF] px-3.5 py-1.5 rounded-full flex items-center gap-2">
-                                    <div class="flex gap-1 text-[#10B981]">
-                                        <i class="fa-solid fa-star text-xs"></i>
-                                        <i class="fa-solid fa-star text-xs"></i>
-                                        <i class="fa-solid fa-star text-xs"></i>
-                                        <i class="fa-solid fa-star text-xs"></i>
-                                        <i class="fa-solid fa-star text-xs"></i>
-                                    </div>
-                                    <span class="text-xs font-bold text-gray-900">5.0</span>
-                                </div>
-                            </div>
-                            <p class="text-sm text-gray-900 font-eng font-semibold text-sm">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nec est urna. Nunc vehicula elit vel est vehicula scelerisque. Suspendisse non elementum ante. Sed libero leo, blandit at diam a, gravida aliquam tellus. Cras quis ornare odio, eget consectetur quam. Aenean tristique sed ex non porta. Nam molestie at quam non luctus. Etiam laoreet, turpis at semper finibus, enim erat semper nisl, sed efficitur diam nisl ut ligula. Proin tincidunt fermentum mauris, non cursus odio convallis ut. Nulla sodales ante eu suscipit mattis. Sed euismod tristique neque vel ornare.
-                            </p>
-                        </div>
-                    </a>
-
-                </aside>
+            <!-- ฝั่งขวา: My Reviews -->
+            <div class="flex-1 min-w-0 flex flex-col h-full">
+                <h2 class="text-xl font-eng font-bold text-gray-900 mb-3 shrink-0">My Reviews</h2>
+                
+                <!-- Container สำหรับรายการการ์ด พร้อม Scrollbar นุ่มนวลถ้าเกินพื้นที่ -->
+                <div id="profileReviewContainer" class="flex flex-col gap-4 overflow-y-auto pr-1 flex-1">
+                </div>
             </div>
-        </section>
 
+        </section>
     </main>
+
+    <!-- นำเข้า TypeScript ที่คอมไพล์แล้ว -->
+    <script type="module" src="./js/profile.js"></script>
 </body>
-</html>
+</html>>
