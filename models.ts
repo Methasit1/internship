@@ -85,3 +85,16 @@ export interface Review {
   content: string;
   date: string;
 }
+
+// myreview
+export interface Review {
+    id: string;
+    companyName: string;
+    position: string;
+    rating: number;       // เลขจำนวนเต็ม 1-5 (ไม่มีทศนิยม)
+    detail: string;
+    date: string;         // รูปแบบ "DD / MM / YYYY"
+    authorName: string;   // ชื่อผู้รีวิว
+    isNew?: boolean;
+    author?: string;
+}

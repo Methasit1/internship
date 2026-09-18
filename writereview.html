@@ -3,113 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>เด็กฝึกงาน.SE</title>
+    <title>เขียนรีวิว - เด็กฝึกงาน.SE</title>
     <link rel="stylesheet" href="./src/output.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         .font-eng { font-family: 'Inter', 'Sarabun', sans-serif; }
         .font-thai { font-family: 'Sarabun', 'Kanit', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body class="bg-[#F3F5F7] min-h-screen font-thai text-gray-800">
+<body class="bg-[#F3F5F7] h-screen flex flex-col font-thai text-gray-800 overflow-hidden">
 
     <!-- Header / Navbar -->
-    <nav class="flex items-center justify-between px-8 md:px-16 py-4 bg-white border-b border-gray-100 sticky top-0 z-50">
-        <!-- Logo -->
+    <nav class="flex items-center justify-between px-6 py-3 bg-white border-b border-gray-100 shrink-0 z-50">
         <a href="./index.html">
-            <img src="./img/logo.png" alt="Logo" class="w-28 md:w-32 h-auto">
+            <img src="./img/logo.png" alt="Logo" class="w-28 h-auto">
         </a>
-        
-        <!-- Navigation Link -->
-        <div class="flex items-center gap-10 font-medium">
-            <a href="./index.html" class="relative py-1 text-gray-900 font-semibold after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[3px] after:bg-[#10B981] after:rounded-full">Feed</a>
-            <a href="./profile.html" class="text-gray-500 hover:text-emerald-600 transition-colors">Profile</a>
+        <div class="relative hidden md:flex items-center gap-8 text-gray-600 font-medium">
+            <a href="./index.html" class="hover:text-emerald-600 pb-1 transition-colors">Feed</a>
+            <a href="./profile.html" class="hover:text-emerald-600 pb-1 transition-colors">Profile</a>
         </div>
-        
-        <!-- Profile Icon -->
-        <a href="./profile.html" class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-300 transition">
-            <i class="fa-regular fa-user text-base"></i>
-        </a>
+        <div class="flex items-center gap-3 ml-10">
+            <a href="./profile.html" class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-700 shrink-0 hover:bg-gray-300 transition">
+                <i class="fa-regular fa-user text-base"></i>
+            </a>
+        </div>
     </nav>
 
     <!-- Main Container -->
-    <main class="max-w-[1536px] mx-auto px-8 md:px-16 py-8">
-        <!-- Back Button -->
-        <a title="toallcompanybtn" href="./allCompany.html" class="inline-flex items-center gap-3 text-gray-500 hover:text-gray-800 font-medium text-base mb-6 transition-colors ml-20 md:ml-24">
-            <i class="fa-solid fa-chevron-left text-lg"></i>
-            <span>บริษัททั้งหมด</span>
+    <main class="max-w-7xl mx-auto px-6 py-6 flex flex-col flex-1 w-full overflow-hidden">
+        <a title="toallcompanybtn" href="./companyreview.html" class="inline-flex items-center gap-2 text-black/50 hover:text-gray-700 font-normal text-lg transition-colors mb-3 shrink-0">
+            <i class="fa-solid fa-chevron-left text-lg font-extrabold"></i>
+            <span>หน้ารีวิวบริษัท</span>
         </a>
 
-        <!-- Review Form Card -->
-        <div class="bg-white rounded-[28px] max-w-2xl mx-auto p-8 md:p-12 shadow-sm border border-gray-100">
-            <!-- Header Title -->
-            <div class="mb-6">
-                <h1 class="text-3xl md:text-4xl font-extrabold font-eng text-gray-900 tracking-tight">Reviews</h1>
-                <span class="text-xs font-semibold text-gray-400 font-eng tracking-wider mt-1 block">31 / 08 / 2026</span>
-            </div>
-
-            <form class="space-y-6">
-                <!-- Field 1: Position -->
-                <div>
-                    <label for="internshipPosition" class="block text-gray-500 font-medium text-sm md:text-base font-eng mb-2">
-                        Internship Position
-                    </label>
-                    <input 
-                        id="internshipPosition"
-                        type="text"
-                        title="Internship Position"
-                        placeholder="กรอกตำแหน่งฝึกงาน"
-                        class="w-full bg-[#EFEFEF]/70 focus:bg-white border border-transparent focus:border-emerald-500 rounded-2xl p-4 text-gray-800 font-medium outline-none transition-all duration-200 shadow-inner"/>
+        <div class="flex-1 overflow-y-auto no-scrollbar flex justify-center items-start pt-2 pb-6">
+            <div class="bg-white rounded-3xl max-w-2xl w-full p-8 md:p-10 shadow-sm border border-gray-100">
+                <div class="mb-6">
+                    <h1 class="text-3xl md:text-4xl font-extrabold font-eng text-gray-900 tracking-tight">Reviews</h1>
+                    <span id="displayDate" class="text-xs font-semibold text-gray-400 font-eng tracking-wider mt-1 block"></span>
                 </div>
 
-                <!-- Field 2: Overall Rating -->
-                <div class="py-2 text-center">
-                    <label class="block text-gray-500 font-medium text-sm md:text-base font-eng mb-4 text-left">
-                        Overall Rating
-                    </label>
-                    <div class="flex flex-col items-center justify-center space-y-2">
-                        <span class="text-5xl md:text-6xl font-extrabold font-eng text-gray-900 tracking-tight">0.0</span>
-                        <div class="flex gap-2 text-3xl md:text-4xl text-gray-300 pt-1">
-                            <i class="fa-solid fa-star cursor-pointer hover:text-emerald-400 transition-colors"></i>
-                            <i class="fa-solid fa-star cursor-pointer hover:text-emerald-400 transition-colors"></i>
-                            <i class="fa-solid fa-star cursor-pointer hover:text-emerald-400 transition-colors"></i>
-                            <i class="fa-solid fa-star cursor-pointer hover:text-emerald-400 transition-colors"></i>
-                            <i class="fa-solid fa-star cursor-pointer hover:text-emerald-400 transition-colors"></i>
+                <form id="reviewForm" class="space-y-6">
+                    <!-- Position Input -->
+                    <div>
+                        <label for="internshipPosition" class="block text-gray-500 font-medium text-sm md:text-base font-eng mb-2">
+                            Internship Position
+                        </label>
+                        <input 
+                            id="internshipPosition"
+                            type="text"
+                            required
+                            placeholder="กรอกตำแหน่งฝึกงาน เช่น Frontend Developer"
+                            class="w-full bg-[#EFEFEF]/70 focus:bg-white border border-transparent focus:border-emerald-500 rounded-2xl p-4 text-gray-800 font-medium outline-none transition-all duration-200 shadow-inner"/>
+                    </div>
+
+                    <!-- Overall Rating Input (ไม่มีทศนิยม) -->
+                    <div class="py-2 text-center">
+                        <label class="block text-gray-500 font-medium text-sm md:text-base font-eng mb-4 text-left">
+                            Overall Rating
+                        </label>
+                        <div class="flex flex-col items-center justify-center space-y-2">
+                            <!-- ตัวเลขเป็นจำนวนเต็ม 0-5 ไม่มีทศนิยม -->
+                            <span id="ratingValueText" class="text-5xl md:text-6xl font-extrabold font-eng text-gray-900 tracking-tight">0</span>
+                            <div class="flex gap-2 text-3xl md:text-4xl text-gray-300 pt-1" id="starContainer">
+                                <i class="fa-solid fa-star cursor-pointer hover:text-emerald-400 transition-colors" data-value="1"></i>
+                                <i class="fa-solid fa-star cursor-pointer hover:text-emerald-400 transition-colors" data-value="2"></i>
+                                <i class="fa-solid fa-star cursor-pointer hover:text-emerald-400 transition-colors" data-value="3"></i>
+                                <i class="fa-solid fa-star cursor-pointer hover:text-emerald-400 transition-colors" data-value="4"></i>
+                                <i class="fa-solid fa-star cursor-pointer hover:text-emerald-400 transition-colors" data-value="5"></i>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Field 3: Detailed Review -->
-                <div>
-                    <label for="detailedReview" class="block text-gray-500 font-medium text-sm md:text-base font-eng mb-2">
-                        Detailed Review
-                    </label>
-                    <textarea 
-                        id="detailedReview"
-                        rows="4"
-                        title="Detailed Review"
-                        placeholder="กรอกรายละเอียดรีวิว"
-                        class="w-full bg-[#EFEFEF]/70 focus:bg-white border border-transparent focus:border-emerald-500 rounded-2xl p-4 text-gray-800 font-medium outline-none transition-all duration-200 resize-none shadow-inner"
-                    ></textarea>
-                </div>
+                    <!-- Detailed Review Input -->
+                    <div>
+                        <label for="detailedReview" class="block text-gray-500 font-medium text-sm md:text-base font-eng mb-2">
+                            Detailed Review
+                        </label>
+                        <textarea 
+                            id="detailedReview"
+                            rows="4"
+                            required
+                            placeholder="กรอกรายละเอียดรีวิวการทำงาน สังคม สวัสดิการ..."
+                            class="w-full bg-[#EFEFEF]/70 focus:bg-white border border-transparent focus:border-emerald-500 rounded-2xl p-4 text-gray-800 font-medium outline-none transition-all duration-200 resize-none shadow-inner"
+                        ></textarea>
+                    </div>
 
-                <!-- Form Actions -->
-                <div class="flex flex-row-reverse items-center gap-4 pt-4">
-                    <a href="./companyreview.html" class="font-thai text-sm 2xl:text-base font-semibold text-white bg-[#10B981] hover:bg-emerald-600 rounded-full px-8 py-3 tracking-wider transition-colors inline-block shadow-sm">
-                        บันทึก
-                    </a>
-                    <a href="./companyreview.html" class="font-thai text-sm 2xl:text-base font-semibold text-gray-600 hover:text-red-500 rounded-full px-6 py-3 tracking-wider transition-colors inline-block">
-                        ยกเลิก
-                    </a>
-                </div>
-            </form>
+                    <!-- Actions -->
+                    <div class="flex flex-row-reverse items-center gap-4 pt-4">
+                        <button type="submit" class="font-thai text-sm font-semibold text-white bg-[#10B981] hover:bg-emerald-600 rounded-full px-8 py-3 transition-colors cursor-pointer shadow-sm">
+                            บันทึก
+                        </button>
+                        <a href="./companyreview.html" class="font-thai text-sm font-semibold text-gray-600 hover:text-red-500 rounded-full px-6 py-3 transition-colors inline-block">
+                            ยกเลิก
+                        </a>
+                    </div>
+                </form>
+            </div>
         </div>
     </main>
 
+    <script type="module" src="./js/writereview.js"></script>
 </body>
 </html>
