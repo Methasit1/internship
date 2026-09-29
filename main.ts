@@ -21,9 +21,12 @@ document.addEventListener('DOMContentLoaded', () => {
         let htmlContent = '';
 
         // กำหนด Type Any ให้พารามิเตอร์ c เพื่อป้องกันขีดแดง Implicit Any
-        const createCard = (c: any) => {const companyReviews = storedReviews.filter((r: any) => String(r.companyId) === String(c.id));
+        const createCard = (c: any) => {
+            const companyReviews = storedReviews.filter((r: any) => String(r.companyId) === String(c.id));
             const uniqueReviewers = new Set(companyReviews.map((r: any) => r.authorName || 'ไม่ระบุชื่อ'));
-            const actualInternCount = uniqueReviewers.size;`
+            const actualInternCount = uniqueReviewers.size > 0 ? uniqueReviewers.size : c.internCount;
+
+            return`
             <a href="./companyreview.html?id=${c.id}" class="block bg-white rounded-3xl shadow-md border border-gray-100 overflow-hidden group hover:shadow-lg/20 transition flex flex-col relative pb-4 flex-1 cursor-pointer">      
                 <div class="relative h-30 overflow-hidden">
                     <img src="${c.imageUrl}" alt="${c.name}" class="w-full h-full object-cover transition duration-300"/>
@@ -54,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 -960 960 960" width="20px" fill="#B3B3B3">
                                 <path d="M362-540q-48-48-48-118t48-118q48-48 118-48t118 48q48 48 48 118t-48 118q-48 48-118 48t-118-48ZM162-131v-127q0-30 14.5-55t40.5-41q59-35 126.29-53.5t136.5-18.5q69.21 0 136.71 18.5Q684-389 743-354q26 15 40.5 40.5T798-258v127H162Zm98-98h440v-29q0-5.18-1.03-7.41-1.02-2.24-2.97-2.59-47-28-103.5-44T480-328q-56 0-112.5 15.5T264-268q-2 1-3 3.22-1 2.23-1 6.78v29Zm268.5-380.71q19.5-19.71 19.5-48.5t-19.71-48.29q-19.71-19.5-48.5-19.5t-48.29 19.71q-19.5 19.71-19.5 48.5t19.71 48.29q19.71 19.5 48.5 19.5t48.29-19.71ZM480-658Zm0 429Z"/>
                             </svg>
-                            <span class="line-clamp-2">ฝึกงานแล้ว ${c.internCount} คน</span>
+                            <span class="line-clamp-2">ฝึกงานแล้ว ${actualInternCount} คน</span>
                         </p>
                     
                     </div>
