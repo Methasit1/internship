@@ -4,11 +4,11 @@ export const getCurrentUser = () => {
     if (localStorage.getItem('isLoggedIn') === 'true') {
         try {
             const u = JSON.parse(localStorage.getItem('userData') || '{}');
-            return new Reviewer(u.id, u.email_uni);
+            return new Reviewer(u.id, u.email_uni); // Reviewer เป็น User
         }
-        catch { /* ตกไปเป็น Guest */ }
+        catch { }
     }
-    return new Guest();
+    return new Guest(); //Guest เป็น User
 };
 export const createCompanyManager = () => {
     const manager = new CompanyManager();

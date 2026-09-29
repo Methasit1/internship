@@ -1,19 +1,21 @@
-// 1. Abstraction[cite: 1]
+// 1. Abstraction 
 export class User {
     id;
     constructor(id) { this.id = id; }
     getId() { return this.id; }
 }
+// Inheritance เชื่อมจาก class User
 export class Guest extends User {
     constructor(id = 'guest') { super(id); }
     getRoleName() { return "Guest"; }
     canWriteReview() { return false; }
     canEditReview(_ownerId) { return false; }
 }
+// Inheritance เชื่อมจาก class User
 export class Reviewer extends User {
     email;
     constructor(id, email) {
-        super(id);
+        super(id); // ส่ง id ให้แม่เก็บ
         if (!email.toLowerCase().endsWith("@up.ac.th"))
             throw new Error("Invalid Email");
         this.email = email;
@@ -47,13 +49,18 @@ export class Company {
     }
     getCompanyInfo() {
         return {
-            id: this.id, name: this.name, address: this.address,
-            roles: this.roles, internCount: this.internCount,
-            imageUrl: this.imageUrl, rating: this.rating,
+            id: this.id,
+            name: this.name,
+            address: this.address,
+            roles: this.roles,
+            internCount: this.internCount,
+            imageUrl: this.imageUrl,
+            rating: this.rating,
             reviewCount: this.reviewCount
         };
     }
 }
+// interface class ทั่วไป
 export class CompanyManager {
     companies = [];
     getAllCompanies() { return this.companies; }

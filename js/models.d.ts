@@ -58,17 +58,6 @@ export declare class CompanyManager {
     } | undefined;
     search(keyword: string): Company[];
 }
-export interface StudentProfile {
-    id: string;
-    studentId: string;
-    name: string;
-    linkedIn_Profile: string;
-    facebook: string;
-    email_uni: string;
-    email_personal: string;
-    password: string;
-    reviews: Review[];
-}
 export interface Review {
     id: string;
     userId?: string;

@@ -61,8 +61,8 @@
             
             <!-- ไอคอนโปรไฟล์ (ซ่อนไว้ก่อน จะแสดงเมื่อล็อกอินแล้วผ่าน TypeScript) -->
             <div>
-                <a href="./profile.html" id="btn-profile" class="hidden mr-21.25 w-10 h-10 bg-gray-100 rounded-full items-center justify-center text-gray-500 hover:bg-gray-200 transition cursor-pointer">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
+                <a href="./profile.html" id="btn-profile" class="hidden ml-21.25 bg-gray-100 rounded-full items-center justify-center text-gray-500 hover:bg-gray-200 transition cursor-pointer">
+                    <img id="profile-img" src="./img/profile.jpg" alt="profileimage" class="rounded-full w-10 h-10 object-cover shadow-sm"/>
                 </a>
             </div>
         </div>
@@ -86,6 +86,8 @@
                 <!-- Profile Card -->
                 <aside class="flex flex-col items-center bg-white w-full rounded-3xl p-5 shadow-sm border border-gray-100">
                     <img id="profile-img" src="./img/profile.jpg" alt="profileimage" class="rounded-full w-32 h-32 object-cover shadow-sm"/>
+                    <!-- <svg class="w-32 h-32" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg> -->
+
                     <p id="profile-name" class="text-lg font-medium font-thai mt-3 text-center">กำลังโหลดข้อมูล...</p>
                     <span class="bg-[#10B981] text-white font-thai rounded-full px-6 py-1 font-semibold text-xs tracking-wider mt-2">ฝึกงาน</span>
                 </aside>
