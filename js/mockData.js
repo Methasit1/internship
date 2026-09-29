@@ -79,7 +79,7 @@ export const rawMockCompanies = [
         roles: ["Developer(1)", "UX/UI Designer(1)", "DevOps Engineer(1)", "Business Analyst(1)"],
         count: 4,
         address: "57/25 หมู่ที่ 9 ตำบลบางพูด อำเภอปากเกร็ด จังหวัดนนทบุรี 11120",
-        imageUrl: "./img/บริษัท เก็ตออน เทคโนโลยี จำกัด.jpeg"
+        imageUrl: "./img/บริษัท โค้ดฮาร์ด จำกัด.webp"
     },
     {
         id: "4",
