@@ -72,15 +72,15 @@
 
                 <div class="flex flex-col bg-white w-full rounded-3xl p-5 shadow-sm border border-gray-100 items-center space-y-2 text-center font-eng">
                     <h4 class="font-medium text-sm text-gray-500">Overall Rating</h4>
-                    <h1 class="font-extrabold text-4xl text-gray-900">5</h1>
-                    <div class="flex gap-1 text-[#10B981] text-xl">
+                    <h1 id="overall-rating" class="font-extrabold text-4xl text-gray-900">0.0</h1>
+                    <div id="overall-stars" class="flex gap-1 text-[#10B981] text-xl">
+                        <!-- <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
                         <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i> -->
                     </div>
-                    <p class="text-xs text-gray-400">Based on 128 Reviews</p>
+                    <p id="intern-count-review" class="text-xs text-gray-500">กำลังคำนวณ...</p>
                 </div>
 
                 <!-- Contact Info -->
@@ -92,7 +92,7 @@
                     </div>
                     <div class="flex items-center gap-3">
                         <i class="fa-solid fa-user-check text-sm text-gray-400 shrink-0"></i>
-                        <p class="text-xs text-gray-500">ฝึกงานแล้ว 50 คน</p>
+                        <p id="intern-count" class="text-xs text-gray-500">กำลังคำนวณ...</p>
                     </div>
                 </div>
             </aside>
@@ -110,7 +110,7 @@
                 <!-- Container เฉพาะส่วนการ์ดรีวิวที่เลื่อนได้ (Scrollable Area) -->
                 <aside class="flex-1 overflow-y-auto space-y-4 pr-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                     <!-- Card 1 -->
-                    <div class="bg-white rounded-3xl w-full p-6 border border-gray-100 shadow-sm pointer-events-none">
+                    <!-- <div class="bg-white rounded-3xl w-full p-6 border border-gray-100 shadow-sm pointer-events-none">
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center gap-3">
                                 <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-700 shrink-0">
@@ -141,10 +141,10 @@
                         <p class="text-sm text-gray-700 font-eng leading-relaxed">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nec est urna. Nunc vehicula elit vel est vehicula scelerisque. Suspendisse non elementum ante. Sed libero leo, blandit at diam a, gravida aliquam tellus. Cras quis ornare odio, eget consectetur quam. Aenean tristique sed ex non porta. Nam molestie at quam non luctus. Etiam laoreet, turpis at semper finibus, enim erat semper nisl, sed efficitur diam nisl ut ligula. Proin tincidunt fermentum mauris, non cursus odio convallis ut. Nulla sodales ante eu suscipit mattis. Sed euismod tristique neque vel ornare.
                         </p>
-                    </div>
+                    </div> -->
 
                     <!-- Card 2 -->
-                    <div class="bg-white rounded-3xl w-full p-6 border border-gray-100 shadow-sm pointer-events-none">
+                    <!-- <div class="bg-white rounded-3xl w-full p-6 border border-gray-100 shadow-sm pointer-events-none">
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center gap-3">
                                 <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-700 shrink-0">
@@ -175,10 +175,10 @@
                         <p class="text-sm text-gray-700 font-eng leading-relaxed">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nec est urna. Nunc vehicula elit vel est vehicula scelerisque. Suspendisse non elementum ante. Sed libero leo, blandit at diam a, gravida aliquam tellus. Cras quis ornare odio, eget consectetur quam. Aenean tristique sed ex non porta. Nam molestie at quam non luctus. Etiam laoreet, turpis at semper finibus, enim erat semper nisl, sed efficitur diam nisl ut ligula. Proin tincidunt fermentum mauris, non cursus odio convallis ut. Nulla sodales ante eu suscipit mattis. Sed euismod tristique neque vel ornare.
                         </p>
-                    </div>
+                    </div> -->
 
                     <!-- Card 3 -->
-                    <div class="bg-white rounded-3xl w-full p-6 border border-gray-100 shadow-sm pointer-events-none">
+                    <!-- <div class="bg-white rounded-3xl w-full p-6 border border-gray-100 shadow-sm pointer-events-none">
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center gap-3">
                                 <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-700 shrink-0">
@@ -209,10 +209,10 @@
                         <p class="text-sm text-gray-700 font-eng leading-relaxed">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nec est urna. Nunc vehicula elit vel est vehicula scelerisque. Suspendisse non elementum ante. Sed libero leo, blandit at diam a, gravida aliquam tellus. Cras quis ornare odio, eget consectetur quam. Aenean tristique sed ex non porta. Nam molestie at quam non luctus. Etiam laoreet, turpis at semper finibus, enim erat semper nisl, sed efficitur diam nisl ut ligula. Proin tincidunt fermentum mauris, non cursus odio convallis ut. Nulla sodales ante eu suscipit mattis. Sed euismod tristique neque vel ornare.
                         </p>
-                    </div>
+                    </div> -->
 
                     <!-- Card 4 -->
-                    <div class="bg-white rounded-3xl w-full p-6 border border-gray-100 shadow-sm pointer-events-none">
+                    <!-- <div class="bg-white rounded-3xl w-full p-6 border border-gray-100 shadow-sm pointer-events-none">
                         <div class="flex items-center justify-between mb-4">
                             <div class="flex items-center gap-3">
                                 <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-700 shrink-0">
@@ -243,7 +243,7 @@
                         <p class="text-sm text-gray-700 font-eng leading-relaxed">
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nec est urna. Nunc vehicula elit vel est vehicula scelerisque. Suspendisse non elementum ante. Sed libero leo, blandit at diam a, gravida aliquam tellus. Cras quis ornare odio, eget consectetur quam. Aenean tristique sed ex non porta. Nam molestie at quam non luctus. Etiam laoreet, turpis at semper finibus, enim erat semper nisl, sed efficitur diam nisl ut ligula. Proin tincidunt fermentum mauris, non cursus odio convallis ut. Nulla sodales ante eu suscipit mattis. Sed euismod tristique neque vel ornare.
                         </p>
-                    </div>
+                    </div> -->
 
                 </aside>
             </div>

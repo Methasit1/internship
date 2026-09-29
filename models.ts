@@ -1,28 +1,33 @@
-// 1. Abstraction[cite: 1]
+// 1. Abstraction 
 export abstract class User {
   protected id: string;
   constructor(id: string) { this.id = id; }
   public getId(): string { return this.id; }
+
   abstract getRoleName(): string;
   abstract canWriteReview(): boolean;
   abstract canEditReview(ownerId: string): boolean;
 }
 
+// Inheritance เชื่อมจาก class User
 export class Guest extends User {
   constructor(id: string = 'guest') { super(id); }
+
   getRoleName(): string { return "Guest"; }
   canWriteReview(): boolean { return false; }
   canEditReview(_ownerId: string): boolean { return false; }
 }
 
+// Inheritance เชื่อมจาก class User
 export class Reviewer extends User {
   private email: string;
   constructor(id: string, email: string) {
-    super(id);
+    super(id); // ส่ง id ให้แม่เก็บ
     if (!email.toLowerCase().endsWith("@up.ac.th")) throw new Error("Invalid Email");
     this.email = email;
   }
   public getEmail(): string { return this.email; }
+
   getRoleName(): string { return "Reviewer"; }
   canWriteReview(): boolean { return true; }
   canEditReview(ownerId: string): boolean { return this.id === ownerId; }
@@ -36,6 +41,7 @@ export class Company {
   private roles: string[];
   private internCount: number;
   private imageUrl: string;
+
   private rating: number = 0;
   private reviewCount: number = 0;
 
@@ -55,14 +61,19 @@ export class Company {
 
   public getCompanyInfo() {
     return {
-      id: this.id, name: this.name, address: this.address,
-      roles: this.roles, internCount: this.internCount,
-      imageUrl: this.imageUrl, rating: this.rating,
+      id: this.id, 
+      name: this.name, 
+      address: this.address,
+      roles: this.roles, 
+      internCount: this.internCount,
+      imageUrl: this.imageUrl, 
+      rating: this.rating,
       reviewCount: this.reviewCount
     };
   }
 }
 
+// interface class ทั่วไป
 export class CompanyManager {
   private companies: Company[] = [];
   public getAllCompanies(): Company[] { return this.companies; }
@@ -91,17 +102,17 @@ export class CompanyManager {
 }
 
 // เพิ่ม Interface สำหรับข้อมูลนิสิต
-export interface StudentProfile {
-  id: string;
-  studentId: string;
-  name: string;
-  linkedIn_Profile: string;
-  facebook: string;
-  email_uni: string;
-  email_personal: string;
-  password: string;
-  reviews: Review[];
-}
+// export interface StudentProfile {
+//   id: string;
+//   studentId: string;
+//   name: string;
+//   linkedIn_Profile: string;
+//   facebook: string;
+//   email_uni: string;
+//   email_personal: string;
+//   password: string;
+//   reviews: Review[];
+// }
 
 // โครงสร้างของข้อมูลรีวิวแบบรวม (Unified Review Interface)
 export interface Review {

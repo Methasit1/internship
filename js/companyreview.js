@@ -22,6 +22,42 @@ document.addEventListener('DOMContentLoaded', () => {
         if (companyId) {
             storedReviews = storedReviews.filter(review => String(review.companyId) === String(companyId));
         }
+        const internCountElement = document.getElementById('intern-count');
+        const internCountReviewElement = document.getElementById('intern-count-review');
+        if (internCountElement) {
+            // ใช้ Set ช่วยนับชื่อคนเขียนรีวิวเพื่อไม่ให้นับคนเดียวกันซ้ำ
+            // (แต่ถ้าอยากนับรวมทุกรีวิวเลย สามารถเปลี่ยนเป็น const count = storedReviews.length; ได้เลยครับ)
+            const uniqueReviewers = new Set(storedReviews.map(r => r.authorName || 'ไม่ระบุชื่อ'));
+            internCountElement.textContent = `ฝึกงานแล้ว ${uniqueReviewers.size} คน`;
+        }
+        if (internCountReviewElement) {
+            const uniqueReviewers = new Set(storedReviews.map(r => r.authorName || 'ไม่ระบุชื่อ'));
+            internCountReviewElement.textContent = `Based on ${uniqueReviewers.size} Reviews`;
+        }
+        const overallRatingElement = document.getElementById('overall-rating');
+        const overallStarsElement = document.getElementById('overall-stars');
+        if (overallRatingElement && overallStarsElement) {
+            if (storedReviews.length === 0) {
+                overallRatingElement.textContent = '0.0';
+                overallStarsElement.innerHTML = '<i class="fa-solid fa-star text-gray-300"></i>'.repeat(5);
+            }
+            else {
+                const totalRating = storedReviews.reduce((sum, review) => sum + (Number(review.rating) || 5), 0);
+                const averageRating = (totalRating / storedReviews.length).toFixed(1);
+                overallRatingElement.textContent = averageRating;
+                let starsHTML = '';
+                const avgNum = Math.round(Number(averageRating));
+                for (let i = 1; i <= 5; i++) {
+                    if (i <= avgNum) {
+                        starsHTML += '<i class="fa-solid fa-star text-[#10B981]"></i>';
+                    }
+                    else {
+                        starsHTML += '<i class="fa-solid fa-star text-gray-300"></i>';
+                    }
+                }
+                overallStarsElement.innerHTML = starsHTML;
+            }
+        }
         reviewListContainer.innerHTML = '';
         if (storedReviews.length === 0) {
             reviewListContainer.innerHTML = `
