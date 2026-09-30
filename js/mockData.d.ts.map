@@ -1,1 +1,1 @@
-{"version":3,"file":"mockData.d.ts","sourceRoot":"","sources":["../mockData.ts"],"names":[],"mappings":"AACA,eAAO,MAAM,eAAe;;;;;;;;;;CAU3B,CAAC;AAGF,eAAO,MAAM,WAAW;;;;;;;;;;GA4CvB,CAAC;AAEF,eAAO,MAAM,gBAAgB;;;;;;;GAiK5B,CAAC"}
+{"version":3,"file":"mockData.d.ts","sourceRoot":"","sources":["../mockData.ts"],"names":[],"mappings":"AACA,eAAO,MAAM,eAAe;IAC1B,EAAE;IACF,SAAS;IACT,IAAI;IACJ,gBAAgB;IAChB,QAAQ;IACR,SAAS;IACT,cAAc;IACd,QAAQ;IACR,SAAS;CACV,CAAC;AAGF,eAAO,MAAM,WAAW;;;;;;;;;;GA4CvB,CAAC;AAEF,eAAO,MAAM,gBAAgB;;;;;;;GAiK5B,CAAC"}

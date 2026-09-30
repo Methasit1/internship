@@ -1,41 +1,82 @@
 import type { Review } from './models.js';
 import { fillCompanySidebar } from './reviewService.js';
 
-
 document.addEventListener('DOMContentLoaded', () => {
-    // ดึง ID จาก URL (?id=...)
+    // -----------------------------------------------------------------
+    // 1. บังคับขยับเส้นใต้ Indicator ไปที่ Profile (หน่วงเวลาแก้ main.js ทับ)
+    // -----------------------------------------------------------------
+    const updateNavIndicator = (): void => {
+        const profileNav = document.getElementById('nav-profile');
+        const feedNav = document.getElementById('nav-feed');
+        const navIndicator = document.getElementById('nav-indicator');
+
+        if (profileNav && navIndicator) {
+            // สลับคลาสสีตัวอักษร
+            if (feedNav) {
+                feedNav.classList.remove('font-bold', 'text-gray-900');
+                feedNav.classList.add('text-gray-500');
+            }
+            profileNav.classList.remove('text-gray-500');
+            profileNav.classList.add('font-bold', 'text-gray-900');
+
+            // คำนวณพิกัดตำแหน่งคำว่า Profile เทียบกับ Container เมนู
+            const parent = profileNav.parentElement;
+            if (parent) {
+                const parentRect = parent.getBoundingClientRect();
+                const profileRect = profileNav.getBoundingClientRect();
+
+                navIndicator.style.left = `${profileRect.left - parentRect.left}px`;
+                navIndicator.style.width = `${profileRect.width}px`;
+            }
+        }
+    };
+
+    // ใช้ setTimeout เพื่อให้ทำงานหลังจาก main.js และ CSS เรนเดอร์เสร็จแล้ว
+    setTimeout(updateNavIndicator, 100);
+    window.addEventListener('resize', updateNavIndicator);
+
+    // -----------------------------------------------------------------
+    // 2. ดึงข้อมูลรีวิวมาแสดงผล
+    // -----------------------------------------------------------------
     const urlParams = new URLSearchParams(window.location.search);
     const reviewId = urlParams.get('id');
 
-    // ดึง Element จาก DOM
     const positionInput = document.getElementById('view-position') as HTMLInputElement | null;
     const reviewTextarea = document.getElementById('view-review') as HTMLTextAreaElement | null;
     const ratingDisplay = document.getElementById('rating-display') as HTMLElement | null;
     const starIcons = document.querySelectorAll<HTMLElement>('.star-icon');
+    const dateEl = document.getElementById('view-date');
 
-    // ดึงรายการรีวิวทั้งหมดจาก localStorage
     const rawReviews = localStorage.getItem('user_reviews');
     const reviews: Review[] = rawReviews ? JSON.parse(rawReviews) : [];
 
-    // ค้นหารีวิวตาม ID
     const data = reviews.find((r) => String(r.id) === String(reviewId));
 
-    // นำข้อมูลมาแสดงผล
     if (data) {
-        fillCompanySidebar(String(data.companyId));
-        const dateEl = document.getElementById('view-date');
-        if (dateEl) dateEl.textContent = data.date;
+        if (data.companyId) {
+            fillCompanySidebar(String(data.companyId));
+        }
 
-        if (positionInput) positionInput.value = data.position || '';
-        if (reviewTextarea) reviewTextarea.value = data.detail || data.content || '';
+        if (dateEl) {
+            dateEl.textContent = data.date || '31 / 08 / 2026';
+        }
+
+        if (positionInput) {
+            positionInput.value = data.position || '';
+        }
+
+        if (reviewTextarea) {
+            reviewTextarea.value = data.detail || (data as any).content || (data as any).reviewText || '';
+        }
 
         const rating = typeof data.rating === 'number'
             ? data.rating
             : parseInt(String(data.rating || '5'), 10);
 
-        if (ratingDisplay) ratingDisplay.textContent = rating.toString();
+        if (ratingDisplay) {
+            ratingDisplay.textContent = rating.toString();
+        }
 
-        // ระบายสีดาวตามคะแนน
         starIcons.forEach((star, index) => {
             if (index < rating) {
                 star.classList.remove('text-gray-300');
